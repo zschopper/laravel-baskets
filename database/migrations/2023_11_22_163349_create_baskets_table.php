@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('baskets', function (Blueprint $table) {
-            $table->id('basket_id');
             $table->integer('item_id')->relates('products')->on('item_id');
             $table->integer('user_id')->relates('users')->on('id');
             $table->timestamps();
+            $table->primary(['item_id', 'user_id']);
         });
     }
 

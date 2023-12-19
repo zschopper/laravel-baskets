@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ProductTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('product-types', App\Http\Controllers\ProductTypeController::class);
 Route::apiResource('products', App\Http\Controllers\ProductController::class);
+// Route::apiResource('baskets', App\Http\Controllers\BasketController::class);
+
+Route::get    ('baskets', [BasketController::class, 'index']);
+Route::post   ('baskets', [BasketController::class, 'store']);
+Route::get    ('baskets/{item_id}/{user_id}', [BasketController::class, 'show']);
+Route::put    ('baskets/{item_id}/{user_id}', [BasketController::class, 'update']);
+Route::delete ('baskets/{item_id}/{user_id}', [BasketController::class, 'destroy']);
 
 Route::fallback(function (){
   abort(404, 'API resource not found');
