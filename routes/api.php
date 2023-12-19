@@ -23,4 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('product-types', App\Http\Controllers\ProductTypeController::class);
 Route::apiResource('products', App\Http\Controllers\ProductController::class);
-Route::apiResource('baskets', App\Http\Controllers\BasketController::class);
+
+Route::fallback(function (){
+  abort(404, 'API resource not found');
+});
